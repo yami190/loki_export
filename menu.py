@@ -85,12 +85,13 @@ def ArmarPremovimiento():
     
 
 
-def ajusteGobernacion():
-    connec = Conexion.ConexionBaseDeDatos()
-    cursor = connec.cursor()
-    ajuste = 'update mov_temp set apor_ahorro = apor_ahorro / 2'
-    cursor.execute(ajuste)
-    connec.commit() 
+def procesarMovimientos():
+
+    ajusteGobernacion()
+    insertarMovimientos()
+
+def procesarMovimientos():
+    pass
     
 
 def menu():
@@ -106,7 +107,7 @@ def menu():
         elif opcion == '2':
             ArmarPremovimiento()
         elif opcion == '3':
-            ajusteGobernacion()
+            procesarMovimientos()
         elif opcion == '0':
             break
         else:

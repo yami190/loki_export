@@ -70,6 +70,19 @@ def insertarSeguro():
     connec.commit()
     connec.close()
 
+def ajusteGobernacion():
+    connec = Conexion.ConexionBaseDeDatos()
+    cursor = connec.cursor()
+    ajuste = 'update mov_temp set apor_ahorro = apor_ahorro / 2 where codigo BETWEEN 1 AND 28'
+    cursor.execute(ajuste)
+    connec.commit() 
+
+def insertarMovimientos():
+    connec = Conexion.ConexionBaseDeDatos()
+    cursor = connec.cursor()
+    insert = 'INSERT INTO movimientos (cedula, apor_ahorro, apor_presta, seguro, mes, ano) SELECT cedula, apor_ahorro, apor_presta, seguro, mes, ano FROM mov_temp'
+    cursor.execute(insert)
+    connec.commit()
 
 
 
