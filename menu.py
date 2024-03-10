@@ -4,6 +4,7 @@ from conexion import Conexion
 from importar import *
 from modeloSQL import *
 from exportarTXT import *
+from exportarPDF import *
 
 def importarNomina():
     connec = Conexion.ConexionBaseDeDatos()
@@ -83,11 +84,14 @@ def ArmarPremovimiento():
             print("Total nuevos registros ingresados {}".format(premovimieto))
         except ValueError as e:
             print("Error :", e)
-    
+
+def actualizarSocios():
+    Nuevos_exportar_a_pdf()
+    Retirados_exportar_a_pdf()
 
 
 def procesarMovimientos():
-
+    
     ajusteGobernacion()
     insertarMovimientos()
 
@@ -105,8 +109,9 @@ def menu():
     while True:
         print("1. Importar Nomina")
         print("2. Procesar Premovimiento")
-        print("3. Montar en Producción")
-        print("4. Exportar Archivo a SISCA")
+        print("3. Actualizacion de datos")
+        print("4. Montar en Producción")
+        print("5. Exportar Archivo a SISCA")
         print("0. Salir")
         opcion = input("Ingrese una opción: ")
 
@@ -115,8 +120,10 @@ def menu():
         elif opcion == '2':
             ArmarPremovimiento()
         elif opcion == '3':
-            procesarMovimientos()
+            actualizarSocios()
         elif opcion == '4':
+            procesarMovimientos()
+        elif opcion == '5':
             exportarTXT()
         elif opcion == '0':
             break

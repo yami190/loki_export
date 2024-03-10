@@ -84,5 +84,8 @@ def insertarMovimientos():
     cursor.execute(insert)
     connec.commit()
 
+# def Nuevos ingresos():
 
-
+#     SELECT a.cedula, a.nombres, b.nombre as nomina from mov_temp a 
+# INNER JOIN nominas b on a.codigo = b.codigo 
+# WHERE a.cedula not in (SELECT cedula from socios );
