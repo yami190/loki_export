@@ -3,6 +3,7 @@ from tqdm import tqdm
 from conexion import Conexion
 from importar import *
 from modeloSQL import *
+from exportarTXT import *
 
 def importarNomina():
     connec = Conexion.ConexionBaseDeDatos()
@@ -90,8 +91,14 @@ def procesarMovimientos():
     ajusteGobernacion()
     insertarMovimientos()
 
-def procesarMovimientos():
-    pass
+def exportarTXT():
+    mes = None
+    ano = None
+    opcion = None
+    opcion = input("Ingrese 1 si la Nomina es Gobernacion o 2 Si la nomina es ISP, 0 volver: ")
+    mes = input("Ingrese el mes (en número) para el cual desea generar el archivo: ")
+    ano = input("Ingrese el año para el cual desea generar el archivo: ")
+    generar_archivo(opcion, mes, ano)
     
 
 def menu():
@@ -99,6 +106,7 @@ def menu():
         print("1. Importar Nomina")
         print("2. Procesar Premovimiento")
         print("3. Montar en Producción")
+        print("4. Exportar Archivo a SISCA")
         print("0. Salir")
         opcion = input("Ingrese una opción: ")
 
@@ -108,6 +116,8 @@ def menu():
             ArmarPremovimiento()
         elif opcion == '3':
             procesarMovimientos()
+        elif opcion == '4':
+            exportarTXT()
         elif opcion == '0':
             break
         else:
