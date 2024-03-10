@@ -1,11 +1,10 @@
-import time
 from time import sleep
 from tqdm import tqdm
 from conexion import Conexion
 from importar import *
 from modeloSQL import *
 
-def limpiarTablas():
+def importarNomina():
     connec = Conexion.ConexionBaseDeDatos()
     cursor = connec.cursor()
 
@@ -55,27 +54,59 @@ def limpiarTablas():
     
 
 def ArmarPremovimiento():
-    pass
+    premovimieto = contarPreMovimiento()
+    if premovimieto > 0:
+        respuesta = input("Se encontraron {} . ¿Desea seguir ingresando registros? (s/n): ".format(premovimieto))
+        if respuesta.lower() == 's':
+                try:
+                    eliminaRegistroAnterior()
+                    insertarAportes()
+                    insertarPrestamos()
+                    insertarSeguro()
+                    premovimieto = contarPreMovimiento()
+                    print("Total nuevos registros ingresados {}".format(premovimieto))
 
-def funcion3():
-    # Simulación de una tercera tarea
-    for _ in tqdm(range(8), desc='Función 3'):
-        sleep(0.15)
+                except ValueError as e:
+                    print("Error al eliminar las filas de la tabla 'pre_ahorro':", e)
+            
+        else:
+            # Salir del programa
+           pass
+    else:
+        # Si no consigue Registros lo ingresa sin pregntar
+        try:
+            insertarAportes()
+            insertarPrestamos()
+            insertarSeguro()
+            premovimieto = contarPreMovimiento()
+            print("Total nuevos registros ingresados {}".format(premovimieto))
+        except ValueError as e:
+            print("Error :", e)
+    
+
+
+def ajusteGobernacion():
+    connec = Conexion.ConexionBaseDeDatos()
+    cursor = connec.cursor()
+    ajuste = 'update mov_temp set apor_ahorro = apor_ahorro / 2'
+    cursor.execute(ajuste)
+    connec.commit() 
+    
 
 def menu():
     while True:
-        print("1. Ejecutar función 1")
-        print("2. Ejecutar función 2")
-        print("3. Ejecutar función 3")
+        print("1. Importar Nomina")
+        print("2. Procesar Premovimiento")
+        print("3. Montar en Producción")
         print("0. Salir")
         opcion = input("Ingrese una opción: ")
 
         if opcion == '1':
-            limpiarTablas()
+            importarNomina()
         elif opcion == '2':
-            funcion2()
+            ArmarPremovimiento()
         elif opcion == '3':
-            funcion3()
+            ajusteGobernacion()
         elif opcion == '0':
             break
         else:
