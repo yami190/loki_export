@@ -74,6 +74,7 @@ def ajusteGobernacion():
     connec = Conexion.ConexionBaseDeDatos()
     cursor = connec.cursor()
     ajuste = 'update mov_temp set apor_ahorro = apor_ahorro / 2 where codigo BETWEEN 1 AND 28'
+    #print(ajuste)
     cursor.execute(ajuste)
     connec.commit() 
 

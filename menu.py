@@ -62,6 +62,7 @@ def ArmarPremovimiento():
         if respuesta.lower() == 's':
                 try:
                     eliminaRegistroAnterior()
+                    print("realizando pre_ahorro")
                     insertarAportes()
                     insertarPrestamos()
                     insertarSeguro()

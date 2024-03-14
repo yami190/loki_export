@@ -7,7 +7,7 @@ class Conexion:
             conexion = psycopg2.connect(user='postgres',
                                        password='hkmff6y',
                                        host='localhost',
-                                       database='valhalla',
+                                       database='valhalla_old',
                                        port='5432',
                                        client_encoding='UTF8')  # Especifica la codificación aquí
             cursor = conexion.cursor()

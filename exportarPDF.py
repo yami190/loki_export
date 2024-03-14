@@ -55,8 +55,9 @@ def Retirados_exportar_a_pdf():
                                 inner join movimientos c on a.cedula = c.cedula
                                 INNER JOIN nominas b ON a.codigo = b.codigo
                                 WHERE a.cedula NOT IN (SELECT cedula FROM mov_temp)
-                                AND c.mes = 1
-                                AND c.ano = 2024;""")
+                                 and b.codigo BETWEEN 30 and 33
+                                AND c.mes = 4
+                                AND c.ano = 2023;""")
             consulta = cursor.fetchall()
 
         # Crear un nuevo archivo PDF

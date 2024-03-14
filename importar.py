@@ -4,7 +4,7 @@ from conexion import Conexion
 def pre_ahorro():
     # Ruta del archivo CSV
     #archivo_csv = 'C:/Users/freddo/Desktop/pre_ahorro.csv'
-    archivo_csv = 'C:/Users/sistemas/Desktop/data/AHORRO_FEBRERO_2024.csv'
+    archivo_csv = 'C:/Users/sistemas/Desktop/data/AHORRO.csv'
 
     # Establecer la conexión a la base de datos PostgreSQL
     connec = Conexion.ConexionBaseDeDatos()
@@ -39,7 +39,8 @@ def pre_ahorro():
 def pre_prestamos():
     # Ruta del archivo CSV
     #archivo_csv = 'C:/Users/freddo/Desktop/pre_ahorro.csv'
-    archivo_csv = 'C:/Users/sistemas/Desktop/data/PRESTAMOS_FEBRERO_2024.csv'
+    archivo_csv = 'C:/Users/sistemas/Desktop/data/PRESTAMOS.csv'
+    print(archivo_csv)
 
     # Establecer la conexión a la base de datos PostgreSQL
     connec = Conexion.ConexionBaseDeDatos()
@@ -75,7 +76,7 @@ def pre_prestamos():
 def pre_seguro():
     # Ruta del archivo CSV
     #archivo_csv = 'C:/Users/freddo/Desktop/pre_ahorro.csv'
-    archivo_csv = 'C:/Users/sistemas/Desktop/data/SEGURO_FEBRERO_2024.csv'
+    archivo_csv = 'C:/Users/sistemas/Desktop/data/SEGURO.csv'
 
     # Establecer la conexión a la base de datos PostgreSQL
     connec = Conexion.ConexionBaseDeDatos()
